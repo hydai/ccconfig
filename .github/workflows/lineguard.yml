@@ -1,0 +1,24 @@
+name: LineGuard Check
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  lineguard:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Install LineGuard
+      run: |
+        curl -L https://github.com/hydai/lineguard/releases/download/v0.1.4/lineguard-v0.1.4-x86_64-unknown-linux-gnu.tar.gz | tar xz
+        sudo mv lineguard /usr/local/bin/
+        lineguard --version
+        
+    - name: Run LineGuard check
+      run: lineguard .

@@ -65,7 +65,7 @@ Event-driven customizations for Claude behavior (coming soon)
    description: Brief description of what this agent does
    color: purple
    ---
-   
+
    Your agent's system prompt goes here...
    ```
 
@@ -73,12 +73,31 @@ Event-driven customizations for Claude behavior (coming soon)
 
 Documentation for commands and hooks will be added as these features are implemented.
 
+## Code Quality
+
+This project uses [LineGuard](https://github.com/hydai/lineguard) to ensure consistent line endings and clean formatting across all files. LineGuard checks are automatically run on all pull requests and pushes to the main branch.
+
+### Running LineGuard Locally
+
+To check your files before committing:
+```bash
+# Install LineGuard
+cargo install lineguard
+
+# Run checks
+lineguard .
+
+# Fix issues automatically
+lineguard --fix .
+```
+
 ## Contributing
 
 1. Fork the repository
 2. Create a feature branch
 3. Add your configuration following existing patterns
-4. Submit a pull request with clear description
+4. Ensure your code passes LineGuard checks (`lineguard .`)
+5. Submit a pull request with clear description
 
 ## Documentation
 
@@ -86,4 +105,4 @@ Documentation for commands and hooks will be added as these features are impleme
 
 ## License
 
-This project is open source and available under the MIT License.
+This project is open source and available under the Apache License 2.0.

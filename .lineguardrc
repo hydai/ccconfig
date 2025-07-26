@@ -1,0 +1,22 @@
+[checks]
+newline_ending = true
+trailing_spaces = true
+
+ignore_patterns = [
+    "**/.git/**",
+    "**/node_modules/**",
+    "**/target/**",
+    "**/.idea/**",
+    "**/.vscode/**",
+    "*.generated.*",
+    "LICENSE",
+]
+
+file_extensions = [
+    "md",
+    "yml",
+    "yaml",
+    "json",
+    "txt",
+    "gitignore",
+]
