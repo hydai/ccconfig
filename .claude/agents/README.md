@@ -7,7 +7,7 @@ A comprehensive multi-agent system that orchestrates the complete software devel
 This agent system implements a spec-driven development methodology through four core agents that work together:
 
 1. **Requirements Analyst** - Transforms ideas into user stories
-2. **System Architect** - Creates technical designs from requirements  
+2. **System Architect** - Creates technical designs from requirements
 3. **Agile Task Decomposer** - Breaks designs into actionable tasks
 4. **Task Executor** - Implements tasks with professional standards
 
@@ -20,12 +20,12 @@ graph LR
     C --> D[Agile Task Decomposer]
     D --> E[Task Executor]
     E --> F[Working Software]
-    
+
     G[Workflow Validator] --> B
     G --> C
     G --> D
     G --> E
-    
+
     H[Project Dashboard] --> B
     H --> C
     H --> D
@@ -214,7 +214,7 @@ Tasks should deliver visible value, not just technical changes.
 
 # 2. System automatically proceeds through:
 # - Technical design creation
-# - Task decomposition  
+# - Task decomposition
 # - Implementation guidance
 ```
 

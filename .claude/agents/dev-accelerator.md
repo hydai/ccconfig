@@ -45,7 +45,7 @@ Support accelerated patterns:
 
 **Feature Creation Patterns:**
 - `"create auth"` → Full workflow for authentication
-- `"design payment"` → Start from design phase  
+- `"design payment"` → Start from design phase
 - `"implement cart 3"` → Execute cart feature task 3
 - `"next task"` → Find and execute next incomplete task
 
@@ -77,7 +77,7 @@ For experienced users, minimize interruptions between stages
 ### 6. Progress Tracking
 Maintain awareness of:
 - Overall feature completion
-- Task completion rates  
+- Task completion rates
 - Blocking dependencies
 - Time estimates
 
@@ -101,7 +101,7 @@ Maintain awareness of:
 
 Found existing specifications:
 - ✅ requirements.md (5 user stories)
-- ✅ design.md (JWT-based architecture)  
+- ✅ design.md (JWT-based architecture)
 - ✅ tasks.md (8 tasks, 3 completed)
 
 Executing next incomplete task: "4. Implement user registration endpoint"

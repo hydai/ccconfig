@@ -20,7 +20,7 @@ graph TB
             C[commands/] --> C1[command-name.yaml]
             H[hooks/] --> H1[hook-name.yaml]
         end
-        
+
         subgraph "Metadata & Discovery"
             M[catalog.json] --> |indexes| A
             M --> |indexes| C
@@ -29,14 +29,14 @@ graph TB
             V --> |schemas| C1
             V --> |schemas| H1
         end
-        
+
         subgraph "Documentation"
             D[docs/] --> D1[README.md]
             D --> D2[CONTRIBUTING.md]
             D --> D3[examples/]
         end
     end
-    
+
     subgraph "Claude Runtime"
         CR[Configuration Reader] --> |loads| A1
         CR --> |loads| C1
@@ -44,7 +44,7 @@ graph TB
         CP[Configuration Parser] --> CR
         CE[Claude Engine] --> CP
     end
-    
+
     subgraph "User Interfaces"
         CLI[CLI Tools] --> M
         WEB[Web Catalog] --> M
@@ -143,7 +143,7 @@ tags: [productivity, automation]
 command:
   # The actual command pattern
   pattern: "/command-name {arg1} {arg2?}"
-  
+
   # Parameter definitions
   parameters:
     arg1:
@@ -155,7 +155,7 @@ command:
       description: Optional second argument
       required: false
       default: "default-value"
-  
+
   # Command behavior
   action:
     type: prompt  # or 'function', 'workflow'
@@ -163,9 +163,9 @@ command:
       Based on the parameters:
       - arg1: {{arg1}}
       - arg2: {{arg2}}
-      
+
       Execute the following...
-    
+
   # Optional response template
   response:
     format: markdown
@@ -201,7 +201,7 @@ hook:
     condition: |
       # Optional condition (JavaScript expression)
       message.content.includes('specific-text')
-  
+
   # Hook action
   action:
     type: modify_prompt  # or 'add_context', 'log', 'notify'
@@ -210,7 +210,7 @@ hook:
         Remember to consider these points:
         - Point 1
         - Point 2
-      
+
   # Hook settings
   settings:
     enabled: true
@@ -280,13 +280,13 @@ examples:
 interface ConfigurationReader {
   // Load a specific configuration by type and name
   load(type: ConfigType, name: string): Promise<Configuration>;
-  
+
   // List all configurations of a specific type
   list(type: ConfigType): Promise<ConfigurationMetadata[]>;
-  
+
   // Search configurations by query
   search(query: string, filters?: SearchFilters): Promise<SearchResult[]>;
-  
+
   // Validate a configuration file
   validate(type: ConfigType, content: string): ValidationResult;
 }
@@ -320,10 +320,10 @@ interface ConfigurationMetadata {
 interface ValidationService {
   // Validate configuration against schema
   validateSchema(type: ConfigType, content: object): SchemaValidationResult;
-  
+
   // Validate configuration logic and consistency
   validateLogic(config: Configuration): LogicValidationResult;
-  
+
   // Run integration tests for configuration
   testConfiguration(config: Configuration): TestResult;
 }
@@ -346,10 +346,10 @@ interface ValidationError {
 interface CatalogService {
   // Generate catalog from repository
   generateCatalog(): Promise<Catalog>;
-  
+
   // Update catalog incrementally
   updateCatalog(changes: FileChange[]): Promise<Catalog>;
-  
+
   // Query catalog with filters
   queryCatalog(filters: CatalogFilters): Promise<CatalogEntry[]>;
 }
@@ -386,7 +386,7 @@ sequenceDiagram
     participant ConfigReader
     participant Validator
     participant Cache
-    
+
     User->>Claude: Use agent "requirements-analyst"
     Claude->>ConfigReader: load('agent', 'requirements-analyst')
     ConfigReader->>Cache: check cache
@@ -416,15 +416,15 @@ class ConfigurationValidator {
     this.schemas = schemas;
     this.ajv = new Ajv({ allErrors: true });
   }
-  
+
   async validate(type, content) {
     // Step 1: Parse frontmatter
     const { metadata, body } = this.parseFrontmatter(content);
-    
+
     // Step 2: Schema validation
     const schema = this.schemas[type];
     const valid = this.ajv.validate(schema, metadata);
-    
+
     if (!valid) {
       return {
         valid: false,
@@ -435,16 +435,16 @@ class ConfigurationValidator {
         }))
       };
     }
-    
+
     // Step 3: Content validation
     const contentErrors = await this.validateContent(type, body);
-    
+
     return {
       valid: contentErrors.length === 0,
       errors: contentErrors
     };
   }
-  
+
   // TODO: Implement content-specific validation
   async validateContent(type, content) {
     // Validate based on configuration type
@@ -474,23 +474,23 @@ class CatalogGenerator {
       hooks: [],
       stats: {}
     };
-    
+
     // Process each configuration type
     catalog.agents = await this.processDirectory(
       path.join(rootDir, 'agents'),
       'agent'
     );
-    
+
     catalog.commands = await this.processDirectory(
       path.join(rootDir, 'commands'),
       'command'
     );
-    
+
     catalog.hooks = await this.processDirectory(
       path.join(rootDir, 'hooks'),
       'hook'
     );
-    
+
     // Calculate statistics
     catalog.stats = {
       totalAgents: catalog.agents.length,
@@ -498,10 +498,10 @@ class CatalogGenerator {
       totalHooks: catalog.hooks.length,
       contributors: await this.getContributorCount()
     };
-    
+
     return catalog;
   }
-  
+
   // TODO: Implement directory processing
   async processDirectory(dir, type) {
     // Read all files in directory
@@ -537,7 +537,7 @@ Feature: Agent Management
     When I navigate to the agents directory
     Then I should see all agent markdown files
     And each agent should have required metadata fields
-    
+
   Scenario: Use agent from repository
     Given I have the repository with agent "requirements-analyst"
     When I reference the agent in Claude

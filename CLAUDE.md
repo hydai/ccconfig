@@ -11,8 +11,8 @@ This is the Claude Configuration Repository (ccconfig) - a collection of reusabl
 ### Code Quality
 ```bash
 # Run LineGuard to check and fix line endings/formatting
-lineguard .
-lineguard --fix .
+lineguard -r .
+lineguard --fix -r .
 ```
 
 ### Git Workflow

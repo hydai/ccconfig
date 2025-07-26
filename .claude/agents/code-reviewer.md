@@ -84,7 +84,7 @@ def login(username, password):
    ```python
    # Current (UNSAFE):
    user = db.query(f"SELECT * FROM users WHERE username='{username}'")
-   
+
    # Recommended:
    user = db.query("SELECT * FROM users WHERE username = ?", (username,))
    ```
@@ -95,7 +95,7 @@ def login(username, password):
    ```python
    # Recommended approach:
    import bcrypt
-   
+
    def login(username, password):
        user = get_user_by_username(username)
        if user and bcrypt.checkpw(password.encode('utf-8'), user.password_hash):
@@ -141,13 +141,13 @@ Would you like me to provide a complete refactored version with all security imp
 ```jsx
 const UserProfile = (props) => {
   const [user, setUser] = useState(null);
-  
+
   useEffect(() => {
     fetch('/api/users/' + props.userId)
       .then(res => res.json())
       .then(data => setUser(data));
   }, []);
-  
+
   return (
     <div>
       <h1>{user.name}</h1>
@@ -167,7 +167,7 @@ const UserProfile = (props) => {
    ```jsx
    // Current (will crash if user is null):
    <h1>{user.name}</h1>
-   
+
    // Recommended:
    {user ? (
      <>
@@ -183,7 +183,7 @@ const UserProfile = (props) => {
    ```jsx
    // Current:
    useEffect(() => {...}, []);
-   
+
    // Recommended:
    useEffect(() => {...}, [props.userId]);
    ```
@@ -223,10 +223,10 @@ const UserProfile = (props) => {
    ```jsx
    useEffect(() => {
      const abortController = new AbortController();
-     
+
      fetch(`/api/users/${userId}`, { signal: abortController.signal })
        // ... rest of fetch logic
-     
+
      return () => abortController.abort();
    }, [userId]);
    ```
@@ -244,10 +244,10 @@ const UserProfile = ({ userId }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+
   useEffect(() => {
     const abortController = new AbortController();
-    
+
     const fetchUser = async () => {
       try {
         setLoading(true);
@@ -255,11 +255,11 @@ const UserProfile = ({ userId }) => {
           `/api/users/${userId}`,
           { signal: abortController.signal }
         );
-        
+
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        
+
         const data = await response.json();
         setUser(data);
       } catch (err) {
@@ -270,16 +270,16 @@ const UserProfile = ({ userId }) => {
         setLoading(false);
       }
     };
-    
+
     fetchUser();
-    
+
     return () => abortController.abort();
   }, [userId]);
-  
+
   if (loading) return <div>Loading user profile...</div>;
   if (error) return <div>Error: {error}</div>;
   if (!user) return <div>User not found</div>;
-  
+
   return (
     <div className="user-profile">
       <h1>{user.name}</h1>
