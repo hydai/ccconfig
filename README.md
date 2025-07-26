@@ -10,10 +10,37 @@ This repository serves as a collection of reusable Claude AI configurations to e
 
 ```
 ccconfig/
-├── agents/          # AI agent configurations
-├── commands/        # Custom command definitions
-├── hooks/           # Event-driven hooks
-└── docs/            # Documentation and specifications
+├── .claude/                        # Claude AI configurations
+│   ├── agents/                     # AI agent configurations
+│   │   ├── README.md               # Agent system documentation
+│   │   ├── requirements-analyst.md # Gathers user requirements
+│   │   ├── system-architect.md     # Creates technical designs
+│   │   ├── agile-task-decomposer.md # Breaks down into tasks
+│   │   ├── task-executor.md        # Implements tasks
+│   │   ├── code-reviewer.md        # Reviews code quality
+│   │   ├── spec-driven-development.md # Main workflow orchestrator
+│   │   ├── dev-accelerator.md      # Smart development shortcuts
+│   │   ├── project-dashboard.md    # Project visibility & analytics
+│   │   └── workflow-validator.md   # Quality assurance
+│   ├── commands/                   # Slash commands
+│   │   ├── spec.md                 # Full workflow command
+│   │   ├── dev.md                  # Development shortcuts
+│   │   ├── status.md               # Project monitoring
+│   │   ├── validate.md             # Quality validation
+│   │   └── spec/                   # Sub-commands
+│   │       ├── requirements.md     # Requirements gathering
+│   │       ├── design.md           # Technical design
+│   │       ├── tasks.md            # Task creation
+│   │       └── implement.md        # Task implementation
+│   └── settings.local.json         # Local settings
+├── hooks/                          # Event-driven hooks
+├── docs/                           # Project documentation
+│   └── claude-config-repo/         # This project's specs
+│       ├── requirements.md
+│       ├── design.md
+│       └── tasks.md
+└── examples/                       # Usage examples
+    └── README.md
 ```
 
 ## Features
@@ -39,14 +66,14 @@ Event-driven customizations for Claude behavior (coming soon)
    git clone https://github.com/yourusername/ccconfig.git
    ```
 
-2. Browse available agents in the `/agents` directory. Each agent is a markdown file with:
+2. Browse available agents in the `/.claude/agents` directory. Each agent is a markdown file with:
    - Metadata (name, description, tags) in the frontmatter
    - Detailed overview and use cases
    - Complete system prompt defining the agent's behavior
    - Real-world examples showing how to interact with the agent
 
 3. To use an agent like `code-reviewer`:
-   - Open `/agents/code-reviewer.md` to see its capabilities
+   - Open `/.claude/agents/code-reviewer.md` to see its capabilities
    - Reference the agent by its name (`code-reviewer`) in your Claude workflow
    - The agent will behave according to its defined system prompt
    - Check the examples section to understand expected inputs and outputs
@@ -57,7 +84,7 @@ Event-driven customizations for Claude behavior (coming soon)
 
 ### Adding an Agent
 
-1. Create a new markdown file in `/agents/` directory
+1. Create a new markdown file in `/.claude/agents/` directory
 2. Follow this template:
    ```markdown
    ---
